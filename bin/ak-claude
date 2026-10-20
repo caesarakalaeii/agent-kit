@@ -6,5 +6,7 @@ REPO=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
 
 settings=$(ak_render_claude_settings)
 export PATH="$REPO/libexec:$PATH"
+mkdir -p "$AK_LESSONS_DIR"
+export AK_LESSONS_DIR
 exec env CLAUDE_CONFIG_DIR="$AK_CLAUDE_HOME" \
   claude --settings "$settings" --mcp-config "$AK_DATA/claude-mcp.json" "$@"

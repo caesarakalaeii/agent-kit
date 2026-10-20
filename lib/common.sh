@@ -11,6 +11,7 @@ AK_CLAUDE_HOME="$HOME/.claude-agent-kit"
 AK_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/agent-kit"
 AK_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/agent-kit"
 AK_DENY_FILE="$AK_CONFIG/deny-paths"
+AK_LESSONS_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/agent-kit/lessons"
 
 # Prints one absolute path per line from the personal deny list.
 ak_deny_paths() {

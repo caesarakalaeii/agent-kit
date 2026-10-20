@@ -88,7 +88,7 @@ or the change was shipped without it, open the PR without auto-merge and say
 so plainly: the operator decides the merge.
 
 Finish by printing the PR URL and, if applicable, the verdict that authorized
-auto-merge.
+auto-merge. Under `/build`, the `retro` skill runs next.
 
 ## Hard boundaries
 

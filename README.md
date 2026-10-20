@@ -11,7 +11,17 @@ Personal agent setup for hobby projects, for both
 - **Features built end to end**: `/build` runs interview, wave-structured
   plan, `ponytail` cut, implementation by agent teams, verification, a review
   council, then `/ship` pushes, opens the PR and auto-merges once the council
-  approves and CI is green.
+  approves and CI is green. A closing `retro` records what the task taught.
+
+## Lessons
+
+After each `/build` (shipped or stopped on a red gate), the `retro` skill
+writes at most three lessons, each tied to checkable evidence such as a PR,
+CI run or quoted error, into `~/.local/state/agent-kit/lessons/`: one file per
+project plus `_global.md`. The next `/build` reads both before it plans. The
+files are never committed. Changes to agent-kit itself are proposed, not
+applied. The idea is the experience reflector from
+[Harness²](https://github.com/google-research/harness2), reduced to markdown.
 
 ## Isolation
 
@@ -63,7 +73,7 @@ directories are fresh.
 
 | Path | What |
 |---|---|
-| `skills/` | own skills: `ponytail`, `simplify`, `prove-it`, `council`, `ui-review` |
+| `skills/` | own skills: `ponytail`, `simplify`, `prove-it`, `council`, `ui-review`, `retro` |
 | `agents/council-reviewer.md` | one lens of the review council |
 | `commands/build.md`, `commands/ship.md` | the delivery pipeline |
 | `rules/conventions.md` | always-loaded conventions (omp `RULES.md`, Claude Code `CLAUDE.md` import) |

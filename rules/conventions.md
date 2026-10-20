@@ -32,6 +32,6 @@ Loaded into every agent-kit session, in omp and in Claude Code.
 ## Feature work
 
 - Larger changes go through `/build`: interview, plan in waves, `ponytail`
-  cut, implementation by agent teams, verification, council, `/ship`.
+  cut, implementation by agent teams, verification, council, `/ship`, retro.
 - No completion claim without fresh evidence (`prove-it`).
 - Anything a user sees gets checked in a real browser (`ui-review`).

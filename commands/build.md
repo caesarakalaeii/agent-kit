@@ -1,5 +1,5 @@
 ---
-description: End-to-end delivery pipeline, interview (if needed), wave-based plan, TDD implementation in waves, verification (prove-it + ui-review), docs, review council, then hand to /ship. Each phase gates the next; nothing ships on a red gate.
+description: End-to-end delivery pipeline, interview (if needed), wave-based plan, TDD implementation in waves, verification (prove-it + ui-review), docs, review council, /ship, then a retro that records lessons for the next build. Each phase gates the next; nothing ships on a red gate.
 ---
 
 Build: $ARGUMENTS
@@ -18,6 +18,12 @@ Scope: one change, feature-branch sized, in this repository.
 Read the request first, not the phases. If it is a question, answer it and
 stop; `/build` is not the default response to prose. An imperative or an
 explicit yes is the work order.
+
+**Read the lessons first.** `$AK_LESSONS_DIR/<repo>.md` and
+`$AK_LESSONS_DIR/_global.md` (see the `retro` skill) hold what earlier builds
+learned. Read both before the interview; a lesson whose "applies when" matches
+this work order shapes the questions and the plan, and the plan says which
+lessons it followed.
 
 **Interview with the `brainstorming` skill: grill until the requirements are
 unambiguous.** Ask about the genuine unknowns (acceptance criteria,
@@ -113,16 +119,23 @@ skipped past, re-convene on the new diff.
 ## Phase 6, Ship
 
 Follow the `ship` command exactly: feature branch, Conventional Commits,
-push, PR, auto-merge only on an APPROVE verdict with green CI. Never merge,
-never push to main, never force-push. Say in the PR body how it was verified
+push, PR, auto-merge only on an APPROVE verdict with green CI. Never merge by
+hand, never push to main, never force-push. Say in the PR body how it was verified
 (the prove lines) and the council verdict.
+
+## Phase 7, Retro
+
+Run the `retro` skill once `/ship` is done, and also when the pipeline stopped
+on a red gate: a stop is the richest evidence a retro gets. It writes at most
+three evidence-backed lessons and proposes, never applies, changes to
+agent-kit itself.
 
 ## Hard rules
 
 - **No completion claim without fresh evidence.** Every phase gate carries
   its prove line; the handback carries the final one.
 - **A red gate stops the line.** Reporting the stop is a success state;
-  shipping past one is the failure.
+  shipping past one is the failure. The retro still runs.
 - **One change at a time.** Scope creep discovered mid-build gets noted for
   the operator, not built.
 - **Delegated work is your work.** You dispatched it; you read the diff.

@@ -6,6 +6,8 @@ REPO=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
 
 overlay=$(ak_render_omp_overlay)
 export PATH="$REPO/libexec:$PATH"
+mkdir -p "$AK_LESSONS_DIR"
+export AK_LESSONS_DIR
 exec env -u OMP_PROFILE -u PI_PROFILE -u PI_CODING_AGENT_DIR \
   PI_CONFIG_DIR="$AK_OMP_DIRNAME" PI_CONFIG_FILES="$overlay" \
   omp "$@"

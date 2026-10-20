@@ -1,0 +1,48 @@
+# omp overlay for agent-kit sessions, loaded by bin/ak-omp via --config.
+# Overlays outrank a project's .omp/config.yml, so a cloned repo cannot loosen
+# this. bin/ak-omp appends personal deny paths to bash.patterns at launch,
+# which is why bash.patterns must stay the LAST key in this file.
+
+# omp has no classifier mode like Claude Code's auto mode: yolo plus the deny
+# list below is the closest equivalent.
+tools:
+  approvalMode: yolo
+
+# Playwright (CLI + MCP) is the browser in both harnesses; one browser tool,
+# not two that disagree.
+browser:
+  enabled: false
+
+memory:
+  backend: local
+
+bash:
+  patterns:
+    # The kit's own config: an agent must not rewrite the rules it runs under.
+    - { match: "*.omp-agent-kit*", approval: deny }
+    - { match: "*.claude-agent-kit*", approval: deny }
+    - { match: "*/.config/agent-kit*", approval: deny }
+    - { match: "*omp config set*", approval: deny }
+    - { match: "*PI_CONFIG_DIR*", approval: deny }
+    - { match: "*PI_CONFIG_FILES*", approval: deny }
+    # Credentials.
+    - { match: "*/.ssh*", approval: deny }
+    - { match: "*/.aws*", approval: deny }
+    - { match: "*/.gnupg*", approval: deny }
+    - { match: "*/.kube*", approval: deny }
+    - { match: "*/.config/gh/hosts.yml*", approval: deny }
+    - { match: "*/.netrc*", approval: deny }
+    - { match: "*/.docker/config.json*", approval: deny }
+    - { match: "*printenv*", approval: deny }
+    # Irreversible git and GitHub actions. Feature branches and PRs are fine.
+    - { match: "*git push*--force*", approval: deny }
+    - { match: "*git push*-f *", approval: deny }
+    - { match: "*git push*origin main*", approval: deny }
+    - { match: "*git push*origin master*", approval: deny }
+    - { match: "*gh repo delete*", approval: deny }
+    - { match: "*rm -rf /", approval: deny }
+    - { match: "*rm -rf / *", approval: deny }
+    - { match: "*rm -rf ~", approval: deny }
+    - { match: "*rm -rf ~/", approval: deny }
+    - { match: "*rm -rf $HOME", approval: deny }
+    # Personal deny paths from ~/.config/agent-kit/deny-paths follow here.

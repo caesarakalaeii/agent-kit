@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Pinned @playwright/cli. Only on PATH inside agent-kit sessions.
+set -euo pipefail
+PIN=0.1.22
+
+# Playwright's downloaded browsers do not run on NixOS; use the system one.
+if [ -e /etc/NIXOS ] && [ -z "${PLAYWRIGHT_MCP_EXECUTABLE_PATH:-}" ] &&
+   chromium=$(command -v chromium); then
+  export PLAYWRIGHT_MCP_EXECUTABLE_PATH="$chromium"
+fi
+
+if command -v npx >/dev/null 2>&1; then
+  exec npx -y "@playwright/cli@$PIN" "$@"
+elif command -v nix >/dev/null 2>&1; then
+  exec nix shell nixpkgs#nodejs_22 -c npx -y "@playwright/cli@$PIN" "$@"
+fi
+echo "playwright-cli: needs node (npx) or nix" >&2
+exit 127

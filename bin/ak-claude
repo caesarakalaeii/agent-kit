@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Claude Code with agent-kit: isolated config dir, kit settings, Playwright.
+set -euo pipefail
+REPO=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
+. "$REPO/lib/common.sh"
+
+settings=$(ak_render_claude_settings)
+export PATH="$REPO/libexec:$PATH"
+exec env CLAUDE_CONFIG_DIR="$AK_CLAUDE_HOME" \
+  claude --settings "$settings" --mcp-config "$AK_DATA/claude-mcp.json" "$@"

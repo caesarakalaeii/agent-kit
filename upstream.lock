@@ -1,0 +1,28 @@
+# Third-party skills, pinned by commit. install.sh clones each repo at the
+# pinned SHA and links the listed skill directories into both harnesses.
+# Bump a pin by editing the SHA, reading the upstream diff, then re-running
+# ./install.sh.
+#
+# repo  <name>  <url>  <sha>
+# skill <repo-name>  <path-in-repo>
+
+repo  superpowers     https://github.com/obra/superpowers           bb92a77741419a4ab5f06e711a283343f1ada0c3
+repo  anthropic       https://github.com/anthropics/skills          dbd4588f9e1033efb41dad4bef2f7947c8993d44
+repo  playwright-cli  https://github.com/microsoft/playwright-cli   b1a5903c5b633b8c9f843ad7b629c2a78437040c
+
+skill superpowers     skills/brainstorming
+skill superpowers     skills/writing-plans
+skill superpowers     skills/executing-plans
+skill superpowers     skills/subagent-driven-development
+skill superpowers     skills/dispatching-parallel-agents
+skill superpowers     skills/test-driven-development
+skill superpowers     skills/systematic-debugging
+skill superpowers     skills/verification-before-completion
+skill superpowers     skills/using-git-worktrees
+skill superpowers     skills/finishing-a-development-branch
+skill superpowers     skills/receiving-code-review
+
+skill anthropic       skills/frontend-design
+skill anthropic       skills/skill-creator
+
+skill playwright-cli  skills/playwright-cli

@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "defaultMode": "auto",
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.netrc)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Edit(~/.claude-agent-kit/settings.json)",
+      "Edit(~/.claude-agent-kit/CLAUDE.md)",
+      "Edit(~/.claude-agent-kit/skills/**)",
+      "Edit(~/.claude-agent-kit/agents/**)",
+      "Edit(~/.claude-agent-kit/commands/**)",
+      "Edit(~/.omp-agent-kit/**)",
+      "Edit(~/.config/agent-kit/**)"
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "Primary use: personal hobby software projects on a developer laptop. No production systems, no customer data.",
+      "Source control: github.com/caesarakalaeii and every repo under it. Pushing feature branches, opening pull requests and enabling auto-merge on them there is routine.",
+      "Repository visibility: most hobby repos are public, so secrets must never enter a commit."
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Never push directly to main or master: changes go through a feature branch and a pull request."
+    ]
+  }
+}
